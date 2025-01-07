@@ -1,10 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle="Sign In";
+
+const { cookies, redirect } = Astro;
+
+const accessToken = cookies.get("sb-access-token");
+const refreshToken = cookies.get("sb-refresh-token");
+
+if(accessToken && refreshToken) {
+    return redirect ("/profile");
+}
 ---
 
 <BaseLayout pageTitle={pageTitle}>
 
 <h2>Hey! It seems that you are looking for place where you can exchange ideas with your friends? Jist sign in and start</h2>
+
+<form action="/api/auth/signin" method="post">
+
+</form>
 
 </BaseLayout> 
